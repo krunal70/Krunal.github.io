@@ -1,401 +1,921 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krunal's Portfolio</title>
+    <title>Krunal Dubey | Software Engineer II (Frontend / React / Next.js / React Native)</title>
+    
+    <!-- Meta Descriptions & SEO -->
+    <meta name="description" content="Portfolio of Krunal Dubey, Software Engineer II specializing in React.js, Next.js 16, React Native, TypeScript, and modern frontend architecture. 3+ years of enterprise experience building production web and mobile apps.">
+    <meta name="keywords" content="Krunal Dubey, Software Engineer, Frontend Engineer, React Developer, Next.js 16, React Native, Web Developer, Ahmedabad, Maruti Techlabs">
+    <meta name="author" content="Krunal Dubey">
 
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Krunal Dubey | Software Engineer II (Frontend / Mobile)">
+    <meta property="og:description" content="3+ years of experience building and scaling production web and mobile applications using React, Next.js, and React Native.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://krunal70.github.io/">
+
+    <!-- External Fonts & Icon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    
+    <!-- Custom Design System CSS -->
     <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.12.0/devicon.min.css">
-
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light mb-1">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a target="_blank" class="nav-link" href="https://docs.google.com/document/d/1gk1EGHSFtqOwmISP6WC2Tad9rgfX0nkGN229Vc5jqdM/edit?usp=sharing" style="font-size: 1.8em">Resume</a>
-            </li>
-        </ul>
-    </nav>
+    <!-- Dynamic Canvas Particle Background -->
+    <canvas id="bg-canvas"></canvas>
 
-    <div class="container">
-        <section class="landing">
-            <div class="row vertical-center">
-                <div class="col-lg-8 text-left pb-5">
-                    <h1 class="display-1">Krunal Dubey</h1>
-                    <p class="lead pl-2">Python Developer and Coder</p>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scroll-progress"></div>
+    </div>
+
+    <!-- Sticky Glassmorphism Navbar -->
+    <header>
+        <nav class="navbar" id="navbar" aria-label="Main Navigation">
+            <a href="#hero" class="nav-brand">
+                <img src="myimage.png" alt="Krunal Dubey Profile" class="brand-avatar">
+                <span>Krunal<span class="gradient-text">.dev</span></span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#academics" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+
+                <a href="https://drive.google.com/file/d/1DKTWz1UuVKdTKq2ixLDxtJeKQUS5A_Vx/view?usp=drive_link" 
+                   target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                    <i class="fas fa-file-arrow-down"></i> Resume
+                </a>
+
+                <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Open Mobile Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-nav-backdrop" id="mobile-backdrop"></div>
+    <div class="mobile-nav" id="mobile-drawer">
+        <button style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--text-primary); font-size:1.5rem; cursor:pointer;" id="mobile-close-btn">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#hero" class="mobile-nav-link nav-link">Home</a>
+        <a href="#about" class="mobile-nav-link nav-link">About</a>
+        <a href="#skills" class="mobile-nav-link nav-link">Skills</a>
+        <a href="#projects" class="mobile-nav-link nav-link">Projects</a>
+        <a href="#experience" class="mobile-nav-link nav-link">Experience</a>
+        <a href="#academics" class="mobile-nav-link nav-link">Education</a>
+        <a href="#contact" class="mobile-nav-link nav-link">Contact</a>
+        <a href="https://drive.google.com/file/d/1DKTWz1UuVKdTKq2ixLDxtJeKQUS5A_Vx/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:1rem;">
+            <i class="fas fa-file-arrow-down"></i> View Resume
+        </a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="hero-badge-pulse"></span>
+                            Software Engineer II — Frontend & Mobile
+                        </div>
+
+                        <h1 class="hero-title">
+                            Engineering Scalable <br>
+                            <span class="gradient-text">Web & Mobile</span> Platforms
+                        </h1>
+
+                        <p class="hero-subtitle">
+                            Hi, I'm <strong>Krunal Dubey</strong>, a frontend-focused engineer with <strong>3+ years of enterprise experience</strong> architecting production apps with <strong>React.js</strong>, <strong>Next.js 16</strong>, and <strong>React Native</strong> at Maruti Techlabs.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="#projects" class="btn btn-primary">
+                                <i class="fas fa-rocket"></i> Explore Projects
+                            </a>
+                            <a href="https://drive.google.com/file/d/1DKTWz1UuVKdTKq2ixLDxtJeKQUS5A_Vx/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                                <i class="fas fa-file-arrow-down"></i> View Resume
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                <i class="fas fa-paper-plane"></i> Contact Me
+                            </a>
+                        </div>
+
+                        <div class="hero-socials">
+                            <a href="https://github.com/krunal70" target="_blank" class="social-btn" aria-label="GitHub Profile">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/krunal-dubey-529a731a5/" target="_blank" class="social-btn" aria-label="LinkedIn Profile">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:dubeykrunal20@gmail.com" class="social-btn" aria-label="Email Me">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://leetcode.com/krunal70" target="_blank" class="social-btn" aria-label="LeetCode Profile">
+                                <i class="fas fa-code"></i>
+                            </a>
+                            <a href="https://www.hackerrank.com/dubeykrunal20" target="_blank" class="social-btn" aria-label="HackerRank Profile">
+                                <i class="fab fa-hackerrank"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Developer Interactive Terminal Card -->
+                    <div class="terminal-card reveal-on-scroll">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="dot dot-red"></span>
+                                <span class="dot dot-yellow"></span>
+                                <span class="dot dot-green"></span>
+                            </div>
+                            <div class="terminal-title">krunal_engineer.ts</div>
+                            <div></div>
+                        </div>
+                        <div class="terminal-body">
+                            <span class="t-purple">const</span> <span class="t-blue">engineer</span> = {<br>
+                            &nbsp;&nbsp;<span class="t-blue">name</span>: <span class="t-green">'Krunal Dubey'</span>,<br>
+                            &nbsp;&nbsp;<span class="t-blue">title</span>: <span class="t-green">'Software Engineer II (Frontend)'</span>,<br>
+                            &nbsp;&nbsp;<span class="t-blue">location</span>: <span class="t-green">'Ahmedabad, Gujarat, India'</span>,<br>
+                            &nbsp;&nbsp;<span class="t-blue">experience</span>: <span class="t-yellow">'3+ Years'</span>,<br>
+                            &nbsp;&nbsp;<span class="t-blue">coreStack</span>: [<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-green">'React.js'</span>, <span class="t-green">'Next.js 16'</span>, <span class="t-green">'React Native'</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-green">'Redux Toolkit'</span>, <span class="t-green">'Tailwind CSS'</span>, <span class="t-green">'TypeScript'</span><br>
+                            &nbsp;&nbsp;],<br>
+                            &nbsp;&nbsp;<span class="t-blue">achievements</span>: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-blue">cgpa</span>: <span class="t-yellow">'9.10 / 10'</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-blue">codeChefRank</span>: <span class="t-yellow">88</span><br>
+                            &nbsp;&nbsp;},<br>
+                            &nbsp;&nbsp;<span class="t-blue">isAvailableForHire</span>: <span class="t-purple">true</span><br>
+                            };<br><br>
+                            <span class="t-comment">// Ready to solve complex problems</span><br>
+                            <span class="t-blue">engineer</span>.<span class="t-purple">buildApp</span>(); <span class="cursor-blink"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 text-center my-auto pb-5 rounded-circle"><img class="img-fluid rounded-circle"
-                        src="myimage.png"></div>
             </div>
         </section>
 
-        <section class="mt-5 mb-5">
-            <h4 class="display-4">A little about me,</h4>
-            <div class="row">
-                <div class="col-lg-6 wrap text-left">
-                    <div class="about-desc">
-                        <h1 class="bold-text">About</h1>
-                        <div class="pt-5">
-                            <h2 class="mb-5">Hello!</h2>
-                            <p>I'm a Python Developer who love to solve real time problems using Data Structure and algorithm. My Aim is to help my society with my knowledge. 
+        <!-- ABOUT SECTION (BENTO GRID) -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="section-tag"><i class="fas fa-user"></i> About Me</div>
+                <h2 class="section-title">Architecting Robust <span class="gradient-text">Frontend Systems</span></h2>
+                <p class="section-subtitle">A blend of technical precision, clean component architecture, and product-focused execution.</p>
+
+                <div class="bento-grid">
+                    <!-- Bio Summary -->
+                    <div class="bento-item bento-col-8 glass-card bio-card reveal-on-scroll">
+                        <div>
+                            <h3 style="font-family:var(--font-heading); font-size:1.5rem; margin-bottom:1rem;">Professional Overview</h3>
+                            <p style="color:var(--text-secondary); line-height:1.7; margin-bottom:1.25rem;">
+                                I am a frontend-focused Software Engineer with <strong>3+ years of experience</strong> building and scaling production web and mobile applications. Proven track record of owning frontend architecture end-to-end — including greenfield builds, framework migrations (React.js to Next.js 16), authentication systems, and cloud infrastructure migrations (GCP to AWS).
                             </p>
-                            <ul class="social-links list-unstyled mt-4">
-                                <li><a href="mailto:dubeykrunal20@gmail.com">
-                                        <ion-icon name="mail-outline"></ion-icon>
-                                    </a></li>
-                                <li><a href="https://github.com/krunal70">
-                                        <ion-icon name="logo-github"></ion-icon>
-                                    </a></li>
-                                <li><a href="https://www.linkedin.com/in/krunal-dubey-529a731a5/">
-                                        <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a></li>
-                                <li><a href="https://twitter.com/DubeyKrunal">
-                                        <ion-icon name="logo-twitter"></ion-icon>
-                                    </a></li>
+                            <p style="color:var(--text-secondary); line-height:1.7;">
+                                Skilled in mentoring junior engineers, establishing reusable ShadCN/UI component libraries, optimizing technical SEO, and delivering clean, accessible code in fast-paced Agile sprint cycles.
+                            </p>
+                        </div>
+
+                        <div class="stat-box-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">3+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">9.10</div>
+                                <div class="stat-label">B.E. CGPA (VGEC)</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">#88</div>
+                                <div class="stat-label">CodeChef Rank</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">5+</div>
+                                <div class="stat-label">Major Enterprise Apps</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Avatar Card -->
+                    <div class="bento-item bento-col-4 glass-card reveal-on-scroll" style="text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                        <img src="myimage.png" alt="Krunal Dubey Profile" class="profile-img-lg" style="margin-bottom:1.25rem;">
+                        <h3 style="font-size:1.35rem; font-family:var(--font-heading); font-weight:700;">Krunal Dubey</h3>
+                        <p style="color:var(--accent-cyan); font-size:0.9rem; font-weight:600; margin-bottom:1rem;">Software Engineer II</p>
+                        <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+                            <p><i class="fas fa-location-dot" style="color:var(--accent-cyan);"></i> Ahmedabad, Gujarat, India</p>
+                            <p><i class="fas fa-building" style="color:var(--accent-indigo);"></i> Maruti Techlabs</p>
+                        </div>
+                    </div>
+
+                    <!-- Core Engineering Pillars -->
+                    <div class="bento-item bento-col-6 glass-card pillar-card reveal-on-scroll">
+                        <div class="pillar-icon"><i class="fas fa-layer-group"></i></div>
+                        <div>
+                            <h4 style="font-size:1.15rem; font-family:var(--font-heading); margin-bottom:0.5rem; color:var(--text-primary);">Frontend Architecture & UI Libraries</h4>
+                            <p style="font-size:0.9rem; color:var(--text-secondary);">Designed reusable UI component systems using ShadCN/UI and Tailwind CSS, standardizing layout patterns across cloud security platforms and corporate tools.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-item bento-col-6 glass-card pillar-card reveal-on-scroll">
+                        <div class="pillar-icon" style="background:rgba(16, 185, 129, 0.1); color:var(--accent-emerald);"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <h4 style="font-size:1.15rem; font-family:var(--font-heading); margin-bottom:0.5rem; color:var(--text-primary);">Performance, Migration & Technical SEO</h4>
+                            <p style="font-size:0.9rem; color:var(--text-secondary);">Led React to Next.js 16 migrations, AWS cloud infrastructure transitions, and custom sitemap implementations to eliminate indexing bottlenecks and boost page speed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS & TECH STACK SECTION -->
+        <section class="skills-section" id="skills">
+            <div class="container">
+                <div class="section-tag"><i class="fas fa-code"></i> Tech Stack</div>
+                <h2 class="section-title">Technical Expertise & <span class="gradient-text">Skills</span></h2>
+                <p class="section-subtitle">A broad and deeply mastered suite of modern technologies for web, mobile, cloud, and tools.</p>
+
+                <!-- Filter Tabs -->
+                <div class="skill-filter-tabs">
+                    <button class="tab-btn skill-tab-btn active" data-filter="all">All Tech</button>
+                    <button class="tab-btn skill-tab-btn" data-filter="frontend">Frontend & Mobile</button>
+                    <button class="tab-btn skill-tab-btn" data-filter="language">Languages</button>
+                    <button class="tab-btn skill-tab-btn" data-filter="backend">Backend & Cloud</button>
+                    <button class="tab-btn skill-tab-btn" data-filter="tools">Tools & DevOps</button>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="skills-grid">
+                    <div class="skill-card reveal-on-scroll" data-category="frontend">
+                        <div class="skill-icon"><i class="devicon-react-original colored"></i></div>
+                        <div class="skill-info">
+                            <h4>React.js</h4>
+                            <p>Advanced Component Architecture</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="frontend">
+                        <div class="skill-icon"><i class="devicon-nextjs-original"></i></div>
+                        <div class="skill-info">
+                            <h4>Next.js 16</h4>
+                            <p>App Router, SSR & Auth</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="frontend">
+                        <div class="skill-icon"><i class="devicon-react-original colored"></i></div>
+                        <div class="skill-info">
+                            <h4>React Native</h4>
+                            <p>Cross-Platform Mobile</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="frontend">
+                        <div class="skill-icon"><i class="devicon-redux-original colored"></i></div>
+                        <div class="skill-info">
+                            <h4>Redux Toolkit</h4>
+                            <p>Global State Management</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="frontend">
+                        <div class="skill-icon"><i class="devicon-tailwindcss-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>Tailwind CSS</h4>
+                            <p>Utility-First Styling</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="frontend">
+                        <div class="skill-icon"><i class="fas fa-layer-group" style="color:var(--accent-cyan);"></i></div>
+                        <div class="skill-info">
+                            <h4>ShadCN/UI</h4>
+                            <p>Design Systems & Tables</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="language">
+                        <div class="skill-icon"><i class="devicon-javascript-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>JavaScript</h4>
+                            <p>ES6+ Modern Syntax</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="language">
+                        <div class="skill-icon"><i class="devicon-typescript-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>TypeScript</h4>
+                            <p>Type-Safe Engineering</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="language">
+                        <div class="skill-icon"><i class="devicon-python-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>Python</h4>
+                            <p>Data Structures & Scripts</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="language">
+                        <div class="skill-icon"><i class="devicon-cplusplus-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>C++ / C</h4>
+                            <p>Algorithm Optimization</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="backend">
+                        <div class="skill-icon"><i class="devicon-nodejs-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>Node.js</h4>
+                            <p>RESTful APIs & Services</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="backend">
+                        <div class="skill-icon"><i class="fas fa-shield-halved" style="color:var(--accent-indigo);"></i></div>
+                        <div class="skill-info">
+                            <h4>NextAuth / OAuth</h4>
+                            <p>Secure Session Auth</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="backend">
+                        <div class="skill-icon"><i class="devicon-amazonwebservices-original colored"></i></div>
+                        <div class="skill-info">
+                            <h4>AWS / SES</h4>
+                            <p>Cloud Infrastructure</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="backend">
+                        <div class="skill-icon"><i class="devicon-googlecloud-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>GCP</h4>
+                            <p>Cloud Deployment</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="backend">
+                        <div class="skill-icon"><i class="devicon-mysql-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>MySQL / Oracle</h4>
+                            <p>Relational Databases</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="tools">
+                        <div class="skill-icon"><i class="devicon-git-plain colored"></i></div>
+                        <div class="skill-info">
+                            <h4>Git & GitHub</h4>
+                            <p>Version Control & CI/CD</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="tools">
+                        <div class="skill-icon"><i class="fas fa-magnifying-glass" style="color:var(--accent-emerald);"></i></div>
+                        <div class="skill-info">
+                            <h4>Technical SEO</h4>
+                            <p>Sitemap & Indexing Optimization</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-card reveal-on-scroll" data-category="tools">
+                        <div class="skill-icon"><i class="fas fa-robot" style="color:var(--accent-purple);"></i></div>
+                        <div class="skill-info">
+                            <h4>AI-Assisted Dev</h4>
+                            <p>Copilot, Claude, Gemini</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section class="projects-section" id="projects">
+            <div class="container">
+                <div class="section-tag"><i class="fas fa-laptop-code"></i> Portfolio</div>
+                <h2 class="section-title">Featured Enterprise & <span class="gradient-text">Personal Projects</span></h2>
+                <p class="section-subtitle">Production-ready applications demonstrating technical ownership, scalability, and UX design.</p>
+
+                <!-- Project Filters -->
+                <div class="skill-filter-tabs project-filters">
+                    <button class="tab-btn project-tab-btn active" data-filter="all">All Projects</button>
+                    <button class="tab-btn project-tab-btn" data-filter="web">Frontend / Next.js</button>
+                    <button class="tab-btn project-tab-btn" data-filter="mobile">Mobile Apps</button>
+                    <button class="tab-btn project-tab-btn" data-filter="fullstack">Full Stack & Python</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Project 1: Fleet Management System -->
+                    <div class="project-card-wrap reveal-on-scroll" data-category="mobile">
+                        <div class="glass-card project-card">
+                            <span class="project-badge"><i class="fas fa-mobile-screen"></i> Mobile App</span>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3 class="project-title">Fleet Management System</h3>
+                                    <p style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600; margin-bottom:0.75rem;">Maruti Techlabs</p>
+                                    <p class="project-desc">Cross-platform mobile app enabling fleet administrators and drivers to manage real-time vehicle inspections, DVIRs, fuel tracking, and preventive maintenance.</p>
+                                </div>
+                                <div>
+                                    <div class="project-tags">
+                                        <span class="tech-tag">React Native</span>
+                                        <span class="tech-tag">Expo</span>
+                                        <span class="tech-tag">Redux Toolkit</span>
+                                        <span class="tech-tag">Async APIs</span>
+                                    </div>
+                                    <div class="project-footer">
+                                        <button class="btn btn-secondary btn-sm view-project-btn" data-project="fleet-management">
+                                            Case Study <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Cloud Security & Audit Platform -->
+                    <div class="project-card-wrap reveal-on-scroll" data-category="web">
+                        <div class="glass-card project-card">
+                            <span class="project-badge"><i class="fas fa-shield-cat"></i> Web Platform</span>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3 class="project-title">Cloud Security & Audit Platform</h3>
+                                    <p style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600; margin-bottom:0.75rem;">Maruti Techlabs</p>
+                                    <p class="project-desc">Enterprise security audit platform frontend built from scratch, migrated from React to Next.js 16 with NextAuth, multi-workspace invitations, and ShadCN/UI data tables.</p>
+                                </div>
+                                <div>
+                                    <div class="project-tags">
+                                        <span class="tech-tag">React.js</span>
+                                        <span class="tech-tag">Next.js 16</span>
+                                        <span class="tech-tag">NextAuth</span>
+                                        <span class="tech-tag">ShadCN/UI</span>
+                                    </div>
+                                    <div class="project-footer">
+                                        <button class="btn btn-secondary btn-sm view-project-btn" data-project="cloud-security">
+                                            Case Study <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Maruti Site & Assessment Tool -->
+                    <div class="project-card-wrap reveal-on-scroll" data-category="web">
+                        <div class="glass-card project-card">
+                            <span class="project-badge"><i class="fas fa-globe"></i> Corporate Platform</span>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3 class="project-title">Maruti Techlabs Site & Assessment Tool</h3>
+                                    <p style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600; margin-bottom:0.75rem;">Maruti Techlabs</p>
+                                    <p class="project-desc">Revamped corporate website homepage, engineered multi-step interactive data maturity assessment engine, AWS GCP migration, and custom sitemap SEO fixes.</p>
+                                </div>
+                                <div>
+                                    <div class="project-tags">
+                                        <span class="tech-tag">Next.js</span>
+                                        <span class="tech-tag">AWS / SES</span>
+                                        <span class="tech-tag">Sanity CMS</span>
+                                        <span class="tech-tag">Technical SEO</span>
+                                    </div>
+                                    <div class="project-footer">
+                                        <button class="btn btn-secondary btn-sm view-project-btn" data-project="maruti-corporate">
+                                            Case Study <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                        <a href="https://marutitech.com/" target="_blank" style="font-size:0.85rem; color:var(--accent-cyan); text-decoration:none;">Live Site <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Car Marketplace Mobile App -->
+                    <div class="project-card-wrap reveal-on-scroll" data-category="mobile">
+                        <div class="glass-card project-card">
+                            <span class="project-badge"><i class="fas fa-car"></i> Mobile App</span>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3 class="project-title">Car Marketplace Mobile App</h3>
+                                    <p style="font-size:0.8rem; color:var(--text-muted); font-weight:600; margin-bottom:0.75rem;">Personal Project</p>
+                                    <p class="project-desc">Vehicle marketplace mobile app featuring Google OAuth, vehicle listing management, package editing, and buy/sell UI screens.</p>
+                                </div>
+                                <div>
+                                    <div class="project-tags">
+                                        <span class="tech-tag">React Native</span>
+                                        <span class="tech-tag">Expo</span>
+                                        <span class="tech-tag">Redux Toolkit</span>
+                                        <span class="tech-tag">Google OAuth</span>
+                                    </div>
+                                    <div class="project-footer">
+                                        <button class="btn btn-secondary btn-sm view-project-btn" data-project="car-marketplace">
+                                            Case Study <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Worker Management System -->
+                    <div class="project-card-wrap reveal-on-scroll" data-category="fullstack">
+                        <div class="glass-card project-card">
+                            <span class="project-badge"><i class="fas fa-users-gear"></i> Full Stack</span>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3 class="project-title">Worker Management System</h3>
+                                    <p style="font-size:0.8rem; color:var(--text-muted); font-weight:600; margin-bottom:0.75rem;">Personal Project</p>
+                                    <p class="project-desc">Workforce management platform supporting worker, agency, client, department administration, attendance tracking, and payroll management.</p>
+                                </div>
+                                <div>
+                                    <div class="project-tags">
+                                        <span class="tech-tag">React</span>
+                                        <span class="tech-tag">Tailwind CSS</span>
+                                        <span class="tech-tag">Node.js</span>
+                                    </div>
+                                    <div class="project-footer">
+                                        <button class="btn btn-secondary btn-sm view-project-btn" data-project="worker-management">
+                                            Case Study <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Mail Merge Automation -->
+                    <div class="project-card-wrap reveal-on-scroll" data-category="fullstack">
+                        <div class="glass-card project-card">
+                            <span class="project-badge"><i class="fab fa-python"></i> Python Tool</span>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3 class="project-title">Mail Merge Automation Tool</h3>
+                                    <p style="font-size:0.8rem; color:var(--text-muted); font-weight:600; margin-bottom:0.75rem;">Open Source</p>
+                                    <p class="project-desc">Automates document text replacement for personalized template generation across batch files.</p>
+                                </div>
+                                <div>
+                                    <div class="project-tags">
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">Automation</span>
+                                    </div>
+                                    <div class="project-footer">
+                                        <button class="btn btn-secondary btn-sm view-project-btn" data-project="mail-merge">
+                                            Case Study <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                        <a href="https://github.com/krunal70/100days-of-code/tree/master/Mail%20Merge%20Project%20Start" target="_blank" style="font-size:0.85rem; color:var(--accent-cyan); text-decoration:none;">GitHub <i class="fab fa-github"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE TIMELINE SECTION -->
+        <section class="experience-section" id="experience">
+            <div class="container">
+                <div class="section-tag"><i class="fas fa-briefcase"></i> Experience</div>
+                <h2 class="section-title">Professional Work <span class="gradient-text">Experience</span></h2>
+                <p class="section-subtitle">Proven track record in enterprise software engineering, mobile development, and mentorship.</p>
+
+                <div class="timeline">
+                    <!-- Role 1: Maruti Techlabs -->
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-role">Software Engineer II — Frontend</div>
+                            <div class="timeline-company">Maruti Techlabs — Ahmedabad, Gujarat, India</div>
+                            <div class="timeline-date"><i class="far fa-calendar-alt"></i> Jan 2023 – Present</div>
+
+                            <ul class="timeline-list">
+                                <li>Shipped the <strong>Fleet Management System</strong> mobile app (React Native, Redux Toolkit) as frontend developer, building modular, reusable UI components and responsive layouts for a seamless cross-device experience.</li>
+                                <li>Connected real-time, asynchronous API data updates into the Fleet Management System, supporting faster operational decision-making.</li>
+                                <li>Independently architected and built a cloud security and audit management platform's frontend from scratch without predefined Figma designs, leading its migration from <strong>React.js to Next.js 16</strong> for enhanced performance and maintainability.</li>
+                                <li>Established secure authentication and session management using <strong>NextAuth and Google OAuth</strong>, rolled out Forgot/Reset Password, multi-workspace invitations, and paginated data tables.</li>
+                                <li>Developed a reusable UI component library with <strong>ShadCN/UI</strong> (including data tables), reducing code duplication and accelerating feature delivery.</li>
+                                <li>Migrated corporate website infrastructure from GCP to AWS and integrated Amazon SES for transactional email delivery.</li>
+                                <li>Revamped the Maruti corporate website homepage and launched an interactive multi-step data-maturity assessment tool with zero functional issues reported post production release.</li>
+                                <li>Resolved Google indexing and crawling issues via custom sitemap generation, substantially improving technical SEO and organic search visibility.</li>
+                                <li>Mentored 2 interns — onboarding them to the codebase and managing development across concurrent projects using Agile/Scrum practices and Jira.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 2: The Sparks Foundation -->
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-role">Web Development & Design Intern</div>
+                            <div class="timeline-company">The Sparks Foundation — Remote</div>
+                            <div class="timeline-date"><i class="far fa-calendar-alt"></i> Nov 2022 – Dec 2022</div>
+
+                            <ul class="timeline-list">
+                                <li>Created an interactive donation website enabling seamless online contributions for the organization.</li>
+                                <li>Applied modern UI/UX design principles to enhance usability, visual clarity, and user engagement.</li>
+                                <li>Embedded a secure payment gateway integration for smooth end-to-end transactions.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 3: Google Cloud Facilitator Program -->
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-role">Google Cloud Facilitator Track</div>
+                            <div class="timeline-company">Google Cloud</div>
+                            <div class="timeline-date"><i class="far fa-calendar-alt"></i> Mar 2021 – Jun 2021</div>
+
+                            <ul class="timeline-list">
+                                <li>Explored interactive Qwiklabs for Cloud Infrastructure, Deploy & Develop applications, and BigQuery data analytics.</li>
+                                <li>Demonstrated practical mastery of cloud architecture fundamentals and deployment tools.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 wrap align-content-center">
-                    <div class="row mt-5 flex-column">
-                        <div class="col-md-8">
-                            <h2 class="mb-4">My Skills</h2>
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <div class="progress-wrap">
-                                <h4>Python Development</h4>
-                                <div class="progress progress-style">
-                                    <div class="progress-bar color-1" role="progressbar" aria-valuenow="75"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:80%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <div class="progress-wrap">
-                                <h4>Web Development</h4>
-                                <div class="progress progress-style">
-                                    <div class="progress-bar color-1" role="progressbar" aria-valuenow="60"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <div class="progress-wrap">
-                                <h4>Flutter Development</h4>
-                                <div class="progress progress-style">
-                                    <div class="progress-bar color-1" role="progressbar" aria-valuenow="85"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:65%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
-        <section class="interests pt-5 pb-5">
 
-            <h1 class="display-4">Tech I'm familiar with</h1>
-                <h1 class="bold-text bg-text">Tech Stack</h1>
+        <!-- ACADEMICS & HONORS SECTION -->
+        <section class="academics-section" id="academics">
+            <div class="container">
+                <div class="section-tag"><i class="fas fa-graduation-cap"></i> Education & Honors</div>
+                <h2 class="section-title">Academic Excellence & <span class="gradient-text">Coding Achievements</span></h2>
+                <p class="section-subtitle">Demonstrated commitment to engineering fundamentals, competitive programming, and continuous learning.</p>
 
-                <div class="row pt-5">
-                    <div class="col-lg-3 col-md-4">
-                        <div class="icon-box">
-                            <i class="devicon-python-plain colored"></i>
-                            <h3>Python</h3>
+                <div class="academic-grid">
+                    <!-- Education Card -->
+                    <div class="glass-card reveal-on-scroll">
+                        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+                            <div class="contact-icon"><i class="fas fa-university"></i></div>
+                            <div>
+                                <h3 style="font-size:1.25rem; font-family:var(--font-heading);">Bachelor of Engineering</h3>
+                                <p style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Computer Engineering</p>
+                            </div>
+                        </div>
+                        <p style="color:var(--text-primary); font-weight:600; margin-bottom:0.35rem;">Vishwakarma Government Engineering College — Ahmedabad</p>
+                        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1rem;"><i class="far fa-calendar-alt"></i> Jul 2019 – Jun 2023</p>
+                        <div style="display:inline-block; padding:0.4rem 1rem; background:rgba(16, 185, 129, 0.1); border:1px solid rgba(16, 185, 129, 0.3); border-radius:var(--radius-full); color:var(--accent-emerald); font-weight:700; font-size:0.95rem;">
+                            <i class="fas fa-award"></i> CGPA: 9.10 / 10
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                        <div class="icon-box">
-                            <i class="devicon-c-plain-wordmark colored"></i>
-                            <h3>C</h3>
+
+                    <!-- Honors & Coding Competitions -->
+                    <div class="glass-card reveal-on-scroll">
+                        <h3 style="font-size:1.25rem; font-family:var(--font-heading); margin-bottom:1.25rem;"><i class="fas fa-trophy" style="color:var(--accent-amber);"></i> Competitions & Awards</h3>
+
+                        <div class="honor-item">
+                            <div class="honor-icon"><i class="fas fa-medal"></i></div>
+                            <div>
+                                <h4 style="font-size:0.95rem; color:var(--text-primary);">CodeChef: Global Rank 88</h4>
+                                <p style="font-size:0.8rem; color:var(--text-muted);">June Long Challenge | Max Rating 1664</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                        <div class="icon-box">
-                            <i class="devicon-html5-plain colored"></i>
-                            <h3>Html</h3>
+
+                        <div class="honor-item">
+                            <div class="honor-icon"><i class="fas fa-star"></i></div>
+                            <div>
+                                <h4 style="font-size:0.95rem; color:var(--text-primary);">HackerRank: 5-Star & 4-Star</h4>
+                                <p style="font-size:0.8rem; color:var(--text-muted);">5-Star C Language | 4-Star Python Language</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
-                        <div class="icon-box">
-                            <i class="devicon-css3-plain colored"></i>
-                            <h3>CSS</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="devicon-javascript-plain colored"></i>
-                            <h3>JavaScript</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="devicon-git-plain colored"></i>
-                            <h3>Git</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="devicon-github-original colored"></i>
-                            <h3>Github</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="devicon-oracle-original colored"></i>
-                            <h3>Oracle</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="devicon-flutter-plain colored"></i>
-                            <h3>Flutter</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="devicon-mysql-plain colored"></i>
-                            <h3>MySQL</h3>
+
+                        <div class="honor-item" style="margin-bottom:0;">
+                            <div class="honor-icon" style="color:var(--accent-cyan);"><i class="fab fa-git-alt"></i></div>
+                            <div>
+                                <h4 style="font-size:0.95rem; color:var(--text-primary);">Hacktoberfest Contributor</h4>
+                                <p style="font-size:0.8rem; color:var(--text-muted);">4 Pull Requests Merged to Open Source</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-        </section>
-        <section>
-            <h1 class="display-4 mt-5">Education</h4>
-            <h1 class="bold-text bg-text">Academics</h1>
-            <div class="py-4">
-                <div class="desc">
-                    <h4>Bachelor Of Engineering</h4>
-                    <p>
-                        Vishwakarma Government Engineering College <br>
-                        <i>9.17 SPI (8.74 CPI)</i>
-                    </p>
-                </div>
-                <div>
-                    <p>2019 - 2023</p>
+                <!-- Certifications Strip -->
+                <div class="glass-card reveal-on-scroll" style="margin-top:2rem;">
+                    <h3 style="font-size:1.2rem; font-family:var(--font-heading); margin-bottom:1rem;"><i class="fas fa-certificate" style="color:var(--accent-cyan);"></i> Key Certifications</h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+                        <span class="tech-tag" style="padding:0.4rem 0.8rem; font-size:0.825rem;"><i class="fab fa-python" style="color:#38bdf8;"></i> Python for Everybody (Coursera)</span>
+                        <span class="tech-tag" style="padding:0.4rem 0.8rem; font-size:0.825rem;"><i class="fas fa-database" style="color:#6366f1;"></i> Python Data Structures (Coursera)</span>
+                        <span class="tech-tag" style="padding:0.4rem 0.8rem; font-size:0.825rem;"><i class="fab fa-html5" style="color:#e34f26;"></i> Introduction to HTML5 (Coursera)</span>
+                        <span class="tech-tag" style="padding:0.4rem 0.8rem; font-size:0.825rem;"><i class="fab fa-css3-alt" style="color:#1572b6;"></i> Introduction to CSS3 (Coursera)</span>
+                        <span class="tech-tag" style="padding:0.4rem 0.8rem; font-size:0.825rem;"><i class="fab fa-hackerrank" style="color:#2ec866;"></i> Python Basics Certificate (HackerRank)</span>
+                    </div>
                 </div>
             </div>
         </section>
-        <section>
-            <h1 class="display-4 mt-5">Experience</h1>
-            <h1 class="bold-text bg-text">Profile</h1>
-            <div class="row d-flex">
-                <div class="col-md-10">
-                    <div class="mt-3">
-                        <div class="py-4">
-                            <div class="desc">
-                                <h4>Google Cloud Facilitator Program</h4>
-                                <p>By Google Cloud</p>
-                                <p><a target="_blank" href="https://google.qwiklabs.com/public_profiles/003e5113-cc3c-41a9-bfa0-3287f06593f1">My Qwiklab Profile</a></p>
-                            </div>
-                            <div>
-                                <p>March 2021 - June 2021</p>
-                            </div>
-                            <div>
-                                <li>Worked with different interactive Qwiklabs.</li>
-                                <li>Explored Labs Like Cloud Infrastructure, Deploy & Develop, BigQuery Basics for Data Analysts, and a lot more.</li>
-    
-                            </div>
+
+        <!-- DYNAMIC GITHUB ACTIVITY SECTION -->
+        <section class="github-section" id="github">
+            <div class="container">
+                <div class="section-tag"><i class="fab fa-github"></i> Open Source</div>
+                <h2 class="section-title">Live GitHub Activity & <span class="gradient-text">Repositories</span></h2>
+                <p class="section-subtitle">Real-time statistics dynamically fetched from GitHub API (<a href="https://github.com/krunal70" target="_blank" style="color:var(--accent-cyan);">@krunal70</a>).</p>
+
+                <div class="github-stats-grid">
+                    <div class="stat-card glass-card">
+                        <div class="stat-number" id="gh-repo-count">15+</div>
+                        <div class="stat-label">Public Repositories</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-number" id="gh-follower-count">10+</div>
+                        <div class="stat-label">GitHub Followers</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-number">1664</div>
+                        <div class="stat-label">CodeChef Peak Rating</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Commit Dedication</div>
+                    </div>
+                </div>
+
+                <div class="github-stats-grid" id="gh-featured-repos">
+                    <!-- Dynamic Repositories populated via main.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG / MEDIUM ARTICLES SECTION -->
+        <section class="blog-section" id="blog">
+            <div class="container">
+                <div class="section-tag"><i class="fas fa-pen-nib"></i> Publications</div>
+                <h2 class="section-title">Technical Articles & <span class="gradient-text">Insights</span></h2>
+                <p class="section-subtitle">Sharing technical learnings and software development write-ups.</p>
+
+                <div style="max-width:400px;">
+                    <div class="glass-card reveal-on-scroll" style="padding:0; overflow:hidden;">
+                        <a href="https://dubeykrunal20.medium.com/python-project-e85946ac6478" target="_blank" rel="noopener noreferrer">
+                            <img src="image.jpg" alt="Python Project Article" style="width:100%; height:200px; object-fit:cover; display:block;">
+                        </a>
+                        <div style="padding:1.5rem;">
+                            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.5rem;"><i class="far fa-calendar-alt"></i> May 3, 2021 | Medium</div>
+                            <h3 style="font-size:1.15rem; font-family:var(--font-heading); margin-bottom:0.75rem;">
+                                <a href="https://dubeykrunal20.medium.com/python-project-e85946ac6478" target="_blank" style="color:var(--text-primary); text-decoration:none;">Building Automation Projects with Python</a>
+                            </h3>
+                            <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:1.25rem;">Guide and breakdown on solving real-world automation challenges with Python programming.</p>
+                            <a href="https://dubeykrunal20.medium.com/python-project-e85946ac6478" target="_blank" class="btn btn-secondary btn-sm">Read Article <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section>
-            <h1 class="display-4 mt-5">Projects</h1>
-            <h1 class="bold-text bg-text">Portfolio</h1>
-            <div class="row d-flex">
-                <div class="col-md-10">
-                    <div class="mt-3">
-                        <div class="py-4">
-                            <div class="desc">
-                                <h4><a target="_blank" href="https://github.com/krunal70/100days-of-code/tree/master/Mail%20Merge%20Project%20Start">Mail-Merge Project</a></h4>
-                                <p>
-                                    <i>Python</i> <br>
-                                </p>
+
+        <!-- CONTACT SECTION -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="section-tag"><i class="fas fa-paper-plane"></i> Get In Touch</div>
+                <h2 class="section-title">Let's Build Something <span class="gradient-text">Exceptional Together</span></h2>
+                <p class="section-subtitle">Interested in engineering collaboration, senior frontend roles, or consulting? Reach out directly!</p>
+
+                <div class="contact-grid">
+                    <!-- Contact Info -->
+                    <div class="glass-card reveal-on-scroll">
+                        <h3 style="font-size:1.4rem; font-family:var(--font-heading); margin-bottom:1rem;">Contact Information</h3>
+                        <p style="color:var(--text-secondary); font-size:0.95rem;">My inbox is always open. Whether you have a question or want to discuss a new opportunity, I'll get back to you promptly!</p>
+
+                        <div class="contact-info-list">
+                            <div class="contact-info-item">
+                                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <div style="font-size:0.8rem; color:var(--text-muted);">Email</div>
+                                    <a href="mailto:dubeykrunal20@gmail.com" style="color:var(--text-primary); text-decoration:none; font-weight:600;">dubeykrunal20@gmail.com</a>
+                                </div>
                             </div>
-                            <div>
-                                <li>The mail-Merge project will automate your process for editing or replacing different person names in the same text file.</li>
+
+                            <div class="contact-info-item">
+                                <div class="contact-icon" style="background:rgba(99, 102, 241, 0.1); color:var(--accent-indigo);"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <div style="font-size:0.8rem; color:var(--text-muted);">Phone</div>
+                                    <a href="tel:+917016088269" style="color:var(--text-primary); text-decoration:none; font-weight:600;">+91 7016088269</a>
+                                </div>
                             </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div class="py-4">
-                            <div class="desc">
-                                <h4><a target="_blank" href="https://github.com/krunal70/Password_Manager/">Password Manager</a></h4>
-                                <p>
-                                    <i>Python, Tkinter</i>
-                                </p>
-                            </div>
-                            <div>
-                                <li>This Software is for Managing your Passwords for different websites. It'll save your passwords and also helps you to generate strong passwords and copy them to the clipboard for copying it.</li>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <h1 class="display-4 mt-5">Competitive Programming</h1>
-            <h1 class="bold-text bg-text">Coding</h1>
-            <div class="row d-flex">
-                <div class="col-md-10">
-                    <div class="mt-3">
-                        <div class="py-4">
-                            <div class="desc">
-                                <h1><a href="https://www.codechef.com/users/krunal70">Codechef</a></h1>
-                            </div>
-                            <div>
-                                <li>Rating=> 1664</li>
-                                <li>Global Rank 88 in June challenge</li>
+
+                            <div class="contact-info-item">
+                                <div class="contact-icon" style="background:rgba(16, 185, 129, 0.1); color:var(--accent-emerald);"><i class="fas fa-location-dot"></i></div>
+                                <div>
+                                    <div style="font-size:0.8rem; color:var(--text-muted);">Location</div>
+                                    <div style="color:var(--text-primary); font-weight:600;">Ahmedabad, Gujarat, India</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="py-4">
-                            <div class="desc">
-                                <h1><a href="https://www.hackerrank.com/dubeykrunal20">Hackerrank</a></h1>
-                            </div>
-                            <div>
-                                <li>5 Star Coder in C Language and 4 star in Python Language.</li>
+                        <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border-color);">
+                            <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Connect on Social Profiles:</div>
+                            <div class="hero-socials" style="justify-content:flex-start;">
+                                <a href="https://github.com/krunal70" target="_blank" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/krunal-dubey-529a731a5/" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://leetcode.com/krunal70" target="_blank" class="social-btn" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+                                <a href="https://www.hackerrank.com/dubeykrunal20" target="_blank" class="social-btn" aria-label="HackerRank"><i class="fab fa-hackerrank"></i></a>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="glass-card reveal-on-scroll">
+                        <h3 style="font-size:1.4rem; font-family:var(--font-heading); margin-bottom:1.25rem;">Send Me A Message</h3>
+
+                        <form id="contact-form" novalidate>
+                            <div class="form-group">
+                                <label class="form-label" for="contact-name">Your Name *</label>
+                                <input type="text" id="contact-name" class="form-input" placeholder="e.g. Sarah Jenkins" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="contact-email">Email Address *</label>
+                                <input type="email" id="contact-email" class="form-input" placeholder="e.g. sarah@company.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="contact-subject">Subject</label>
+                                <input type="text" id="contact-subject" class="form-input" placeholder="e.g. Project Opportunity / Collaboration">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="contact-message">Message *</label>
+                                <textarea id="contact-message" class="form-textarea" placeholder="Hi Krunal, I would like to discuss..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width:100%;">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+
+                            <div id="form-status" class="form-status"></div>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
-        <section>
-            <h1 class="display-4 mt-5">Certifications</h1>
-            <h1 class="bold-text bg-text">Licenses</h1>
-            <div class="row d-flex">
-                <div class="col-md-10">
-                    <div class="mt-3">
-                        <div class="py-4">
-                            <div class="desc">
-                                <h4><a target="_blank" href="https://coursera.org/share/0c930c143e5ab7655147e8b2f77c9515">Python for Everybody(Getting Started With Python)</a></h4>
-                                <p>
-                                    <a target="_blank" href="https://coursera.org/">Coursera</a>
-                                </p>
-                            </div>
-                            <div>
-                                <li>Learned about Basics Of Python Programming Language.</li>
-                            </div>
-                        </div>
-                        <div class="py-4">
-                            <div class="desc">
-                                <h4><a target="_blank" href="https://coursera.org/share/270d746cd1b9f471582da71396d93a87">Python Data Structures</a></h4>
-                                <p>
-                                    <a target="_blank" href="https://coursera.org/">Coursera</a>
-                                </p>
-                            </div>
-                            <div>
-                                <li>Learned about Python Data Structures like List,Tuple,Set,Dictionaries</li>
-                            </div>
-                        </div>
-                        <div class="py-4">
-                            <div class="desc">
-                                <h4><a target="_blank" href="https://coursera.org/share/0a7fc7a00902a1a6dd6b80753c1c5a09">Introduction to HTML5</a></h4>
-                                <p>
-                                    <a target="_blank" href="https://coursera.org/">Coursera</a>
-                                </p>
-                            </div>
-                            <div>
-                                <li>This course covered Designing part of webpage or Websites.</li>
-                            </div>
-                        </div>
-                        <div class="py-4">
-                            <div class="desc">
-                                <h4><a target="_blank" href="https://coursera.org/share/01655460f004e524a8d98cdbff8b5746">Introduction to CSS3</a></h4>
-                                <p>
-                                    <a target="_blank" href="https://coursera.org/">Coursera</a>
-                                </p>
-                            </div>
-                            <div>
-                                <li>This course covered Styling our Webpage or Websites.</li>
-                            </div>
-                        </div>
-                        <div class="py-4">
-                            <div class="desc">
-                                <h4><a target="_blank" href="https://www.hackerrank.com/certificates/b4c98cb109a5">Python Basics</a></h4>
-                                <p>
-                                    <a target="_blank" href="https://www.hackerrank.com/">Hackerrank</a>
-                                </p>
-                            </div>
-                            <div>
-                                <li>Based on basic concepts of Python Programming Language.</li>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    </main>
+
+    <!-- PROJECT CASE STUDY MODAL DRAWER -->
+    <div class="modal-overlay" id="project-modal">
+        <div class="modal-container">
+            <button class="modal-close" id="modal-close-btn" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div style="margin-bottom:1.5rem;">
+                <span class="project-badge" id="modal-company" style="position:static; display:inline-block; margin-bottom:0.75rem;">Company</span>
+                <h3 id="modal-title" style="font-size:1.75rem; font-family:var(--font-heading); color:var(--text-primary);">Project Title</h3>
             </div>
-        </section>
-        <section>
-            <h1 class="display-4 mt-5">Some of my blogs</h4>
-                <h1 class="bold-text bg-text">Blogs</h1>
-                <div class="row mt-5 mb-5">
-                    <div class="col-md-4">
-                        <div class="blog-entry">
-                            <a target="_blank" href="https://dubeykrunal20.medium.com/python-project-e85946ac6478">
-                                <img class="img-fluid" src="./image.jpg" style="border: 0.1px solid black">
-                            </a>
-                            <div class="text p-4 d-block">
-                                <div class="meta mb-3">
-                                    <div>May 3, 2021</div>
-                                </div>
-                                <h3 class="heading"><a target="_blank" class="link" href="https://dubeykrunal20.medium.com/python-project-e85946ac6478">Python project</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </section>
-        <section>
-            <h1 class="display-4 mt-5">Let's Talk</h1>
-            <h1 class="bold-text bg-text">Contact</h1>
-                    <div class="text-left">
-                            <div class="pt-5">
-                                <h2 class="mb-5">Have a great project idea or want a Software Developer or just want to have a chat? 
-                                <br/>
-                                My inbox is always open!</h2>
-                                <ul class="social-links list-unstyled mt-4">
-                                    <li><a href="mailto:dubeykrunal20@gmail.com">
-                                        <ion-icon name="mail-outline"></ion-icon>
-                                    </a></li>
-                                    <li><a href="https://github.com/krunal70">
-                                        <ion-icon name="logo-github"></ion-icon>
-                                    </a></li>
-                                    <li><a href="https://www.linkedin.com/in/krunal-dubey-529a731a5/">
-                                        <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a></li>
-                                    <li><a href="https://twitter.com/DubeyKrunal">
-                                        <ion-icon name="logo-twitter"></ion-icon>
-                                    </a></li>
-                                </ul>
-                            </div>
-                    </div>
-                <div class="mt-5 mb-5 text-center">
-                    <h4>Made with ♥ by Krunal Dubey</h1>
-                </div>
-        </section>
+
+            <div style="margin-bottom:1.5rem;">
+                <h4 style="font-size:0.9rem; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem; letter-spacing:0.05em;">Technologies Used</h4>
+                <div class="project-tags" id="modal-tech"></div>
+            </div>
+
+            <div style="margin-bottom:1.5rem;">
+                <h4 style="font-size:0.9rem; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem; letter-spacing:0.05em;">Project Overview</h4>
+                <p id="modal-overview" style="color:var(--text-secondary); line-height:1.7;"></p>
+            </div>
+
+            <div style="margin-bottom:2rem;">
+                <h4 style="font-size:0.9rem; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem; letter-spacing:0.05em;">Key Engineering Contributions</h4>
+                <ul class="timeline-list" id="modal-highlights"></ul>
+            </div>
+
+            <div style="display:flex; gap:1rem; justify-content:flex-end;">
+                <a id="modal-github" href="#" target="_blank" class="btn btn-secondary btn-sm">
+                    <i class="fab fa-github"></i> View GitHub Repo
+                </a>
+            </div>
+        </div>
     </div>
 
-    <!-- Made by Kartik Choudhary <3 -->
-    <!-- You can remove the credits if you want lol, but I'd appreciate attribution :) -->
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="back-to-top-btn" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
-    <!-- Scripts -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
-    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p style="margin-bottom:0.5rem;">Designed & Engineered with <i class="fas fa-heart" style="color:var(--accent-rose);"></i> by <strong>Krunal Dubey</strong></p>
+            <p style="font-size:0.8rem; color:var(--text-muted);">&copy; 2026 Krunal Dubey. All Rights Reserved.</p>
+        </div>
+    </footer>
 
+    <!-- Interactive Logic Script -->
+    <script src="./main.js"></script>
 </body>
 
 </html>
