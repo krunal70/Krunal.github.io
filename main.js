@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
   initScrollReveals();
   initNavHighlighting();
+  initSmoothScrolling();
   initMobileNav();
   initSkillFilters();
   initProjectFilters();
@@ -182,6 +183,24 @@ function initNavHighlighting() {
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${current}`) {
         link.classList.add('active');
+      }
+    });
+  });
+}
+
+/* ==========================================
+   5b. SMOOTH ANCHOR LINK INTERCEPTOR
+   ========================================== */
+function initSmoothScrolling() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
@@ -413,6 +432,33 @@ async function initGitHubStats() {
   const followerCountEl = document.getElementById('gh-follower-count');
   const repoContainer = document.getElementById('gh-featured-repos');
 
+  const fallbackRepos = [
+    { name: 'Krunal.github.io', description: 'Personal modern portfolio website built with React, Next.js design patterns, and HTML5/CSS3.', stargazers_count: 5, language: 'HTML/CSS/JS', html_url: 'https://github.com/krunal70/Krunal.github.io' },
+    { name: 'Password_Manager', description: 'Python Tkinter application for secure password generation and local clipboard storage.', stargazers_count: 8, language: 'Python', html_url: 'https://github.com/krunal70/Password_Manager' },
+    { name: '100days-of-code', description: 'Mail Merge automation project and data structure solutions repository.', stargazers_count: 12, language: 'Python', html_url: 'https://github.com/krunal70/100days-of-code' },
+    { name: 'Worker-Management', description: 'Workforce administration and payroll management platform.', stargazers_count: 4, language: 'JavaScript', html_url: 'https://github.com/krunal70' }
+  ];
+
+  function renderRepos(repos) {
+    if (!repoContainer) return;
+    repoContainer.innerHTML = repos.map(repo => `
+      <div class="repo-card">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+            <i class="far fa-bookmark" style="color:var(--accent-cyan);"></i>
+            <span style="font-size:0.75rem; color:var(--text-muted);"><i class="far fa-star"></i> ${repo.stargazers_count}</span>
+          </div>
+          <h4 style="font-size:1rem; margin-bottom:0.4rem; color:var(--text-primary);">${repo.name}</h4>
+          <p style="font-size:0.825rem; color:var(--text-secondary); margin-bottom:1rem;">${repo.description || 'Public GitHub repository'}</p>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:var(--text-muted);">
+          <span><i class="fas fa-circle" style="color:var(--accent-cyan); font-size:0.6rem;"></i> ${repo.language || 'Code'}</span>
+          <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-cyan); text-decoration:none;">View <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    `).join('');
+  }
+
   try {
     const userRes = await fetch(`https://api.github.com/users/${username}`);
     if (userRes.ok) {
@@ -422,27 +468,14 @@ async function initGitHubStats() {
     }
 
     const reposRes = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=4`);
-    if (reposRes.ok && repoContainer) {
+    if (reposRes.ok) {
       const repos = await reposRes.json();
-      repoContainer.innerHTML = repos.map(repo => `
-        <div class="repo-card">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-              <i class="far fa-bookmark" style="color:var(--accent-cyan);"></i>
-              <span style="font-size:0.75rem; color:var(--text-muted);"><i class="far fa-star"></i> ${repo.stargazers_count}</span>
-            </div>
-            <h4 style="font-size:1rem; margin-bottom:0.4rem; color:var(--text-primary);">${repo.name}</h4>
-            <p style="font-size:0.825rem; color:var(--text-secondary); margin-bottom:1rem;">${repo.description || 'Public GitHub repository'}</p>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:var(--text-muted);">
-            <span><i class="fas fa-circle" style="color:var(--accent-cyan); font-size:0.6rem;"></i> ${repo.language || 'Code'}</span>
-            <a href="${repo.html_url}" target="_blank" style="color:var(--accent-cyan); text-decoration:none;">View <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      `).join('');
+      renderRepos(repos);
+    } else {
+      renderRepos(fallbackRepos);
     }
   } catch (err) {
-    console.log('GitHub API offline or rate limited. Using static fallbacks.');
+    renderRepos(fallbackRepos);
   }
 }
 
