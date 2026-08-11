@@ -58,7 +58,7 @@
                 </button>
 
                 <a href="https://drive.google.com/file/d/1DKTWz1UuVKdTKq2ixLDxtJeKQUS5A_Vx/view?usp=drive_link" 
-                   target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                   target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm desktop-resume-btn">
                     <i class="fas fa-file-arrow-down"></i> Resume
                 </a>
 
@@ -72,19 +72,31 @@
     <!-- Mobile Drawer Menu -->
     <div class="mobile-nav-backdrop" id="mobile-backdrop"></div>
     <div class="mobile-nav" id="mobile-drawer">
-        <button style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--text-primary); font-size:1.5rem; cursor:pointer;" id="mobile-close-btn">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="#hero" class="mobile-nav-link nav-link">Home</a>
-        <a href="#about" class="mobile-nav-link nav-link">About</a>
-        <a href="#skills" class="mobile-nav-link nav-link">Skills</a>
-        <a href="#projects" class="mobile-nav-link nav-link">Projects</a>
-        <a href="#experience" class="mobile-nav-link nav-link">Experience</a>
-        <a href="#academics" class="mobile-nav-link nav-link">Education</a>
-        <a href="#contact" class="mobile-nav-link nav-link">Contact</a>
-        <a href="https://drive.google.com/file/d/1DKTWz1UuVKdTKq2ixLDxtJeKQUS5A_Vx/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:1rem;">
-            <i class="fas fa-file-arrow-down"></i> View Resume
-        </a>
+        <div class="mobile-nav-header">
+            <div class="nav-brand">
+                <img src="myimage.png" alt="Krunal Dubey Profile" class="brand-avatar">
+                <span>Krunal<span class="gradient-text">.dev</span></span>
+            </div>
+            <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="mobile-nav-links">
+            <a href="#hero" class="mobile-nav-link nav-link"><i class="fas fa-house"></i> Home</a>
+            <a href="#about" class="mobile-nav-link nav-link"><i class="fas fa-user"></i> About</a>
+            <a href="#skills" class="mobile-nav-link nav-link"><i class="fas fa-code"></i> Skills</a>
+            <a href="#projects" class="mobile-nav-link nav-link"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="#experience" class="mobile-nav-link nav-link"><i class="fas fa-briefcase"></i> Experience</a>
+            <a href="#academics" class="mobile-nav-link nav-link"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a href="#contact" class="mobile-nav-link nav-link"><i class="fas fa-paper-plane"></i> Contact</a>
+        </div>
+
+        <div class="mobile-nav-footer">
+            <a href="https://drive.google.com/file/d/1DKTWz1UuVKdTKq2ixLDxtJeKQUS5A_Vx/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;">
+                <i class="fas fa-file-arrow-down"></i> View Resume
+            </a>
+        </div>
     </div>
 
     <!-- MAIN CONTENT -->
