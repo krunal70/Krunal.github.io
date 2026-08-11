@@ -885,11 +885,26 @@ section {
   overflow: hidden;
 }
 
+.project-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-company {
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
 .project-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.3rem 0.75rem;
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
   background: rgba(15, 20, 32, 0.85);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border-color);
@@ -897,7 +912,7 @@ section {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--accent-cyan);
-  z-index: 2;
+  white-space: nowrap;
 }
 
 .project-content {
@@ -947,7 +962,8 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  pt: 1rem;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
   border-top: 1px solid var(--border-color);
 }
 
