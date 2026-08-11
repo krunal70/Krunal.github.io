@@ -1245,6 +1245,8 @@ section {
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
+}
+
 /* COMPREHENSIVE RESPONSIVE MOBILE STYLES */
 @media (max-width: 768px) {
   /* Hero Section */
