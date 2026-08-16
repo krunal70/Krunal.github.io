@@ -307,9 +307,9 @@ const projectData = {
     tech: ['React Native', 'Expo', 'Redux Toolkit', 'REST APIs', 'Async Storage'],
     overview: 'Shipped a cross-platform production mobile application for fleet administrators and drivers to conduct real-time vehicle inspections, manage DVIRs (Driver Vehicle Inspection Reports), and schedule preventive maintenance.',
     highlights: [
-      'Built modular, reusable UI components and responsive cross-device layouts.',
-      'Integrated real-time asynchronous API data updates to provide accurate live fleet status for decision making.',
-      'Added cost-per-mile summaries, fuel tax reporting, meter readings, and fuel-event tracking for regulatory compliance.'
+      'Built a cross-platform mobile app enabling fleet administrators and drivers to manage inspections, DVIRs, and preventive maintenance in real time.',
+      'Added cost-per-mile summaries, fuel tax reporting, meter readings, and fuel-event tracking to support regulatory compliance and reporting.',
+      'Integrated real-time, asynchronous API data updates to provide accurate live fleet status for decision making.'
     ],
     link: '#',
     github: 'https://github.com/krunal70'
@@ -320,9 +320,9 @@ const projectData = {
     tech: ['React.js', 'Next.js 16', 'NextAuth', 'Google OAuth', 'ShadCN/UI', 'Tailwind CSS'],
     overview: 'Independently architected and built an enterprise cloud security and audit management platform from scratch without predefined Figma designs, later leading its migration from React.js to Next.js 16 for optimal SSR performance.',
     highlights: [
-      'Established secure authentication and session management using NextAuth and Google OAuth.',
-      'Rolled out Forgot/Reset Password, multi-workspace user invitation flows, and paginated data tables for high dataset volumes.',
-      'Created a comprehensive reusable component library with ShadCN/UI, reducing code duplication and accelerating UI delivery.'
+      "Independently developed the platform's frontend from scratch — including dashboard, audit logging, and authentication flows — then led its migration from React.js to Next.js 16 for improved performance and maintainability.",
+      'Set up secure authentication and session management using NextAuth and Google OAuth, including Forgot/Reset Password and multi-workspace user invitation flows.',
+      'Created a reusable UI component library with ShadCN/UI (including data tables) and introduced pagination, improving consistency, development speed, and performance on large datasets.'
     ],
     link: '#',
     github: 'https://github.com/krunal70'
@@ -330,12 +330,14 @@ const projectData = {
   'maruti-corporate': {
     title: 'Maruti Techlabs Corporate Platform & Assessment Engine',
     company: 'Maruti Techlabs',
-    tech: ['Next.js', 'React.js', 'AWS', 'Amazon SES', 'Sanity CMS', 'Technical SEO'],
-    overview: 'Revamped the Maruti corporate website homepage and launched an interactive multi-step data-maturity assessment tool with dynamic form validation and real-time scoring.',
+    tech: ['Next.js', 'React.js', 'AWS Lambda', 'Lambda@Edge', 'Amazon SES', 'Sanity CMS', 'Technical SEO'],
+    overview: 'Revamped the company homepage with modern UI/UX practices and launched an interactive multi-step data-maturity assessment tool with dynamic form handling, validation logic, and real-time scoring.',
     highlights: [
-      'Shipped assessment engine with zero functional bugs reported post production deployment.',
-      'Migrated corporate web infrastructure from Google Cloud Platform (GCP) to Amazon Web Services (AWS) with Amazon SES transactional email.',
-      'Fixed Google indexing and crawling issues via custom sitemap generation, substantially boosting technical SEO.'
+      'Revamped the company homepage with modern UI/UX practices, standardizing typography and layout for consistent, responsive, cross-browser presentation.',
+      'Engineered an interactive multi-step assessment tool with dynamic form handling, validation logic, and real-time scoring, shipped with zero functional issues reported after production deployment.',
+      'Produced new service pages and CMS-driven AI content pages using reusable, scalable component architecture.',
+      'Migrated the site from GCP to AWS, building AWS Lambda functions for form submissions and transactional email via Amazon SES, plus Lambda@Edge functions for URL redirects and rewrites, with the codebase restructured into static frontend and serverless backend modules.',
+      'Resolved Google indexing and crawling issues via custom sitemap generation to improve technical SEO.'
     ],
     link: 'https://marutitech.com/',
     github: 'https://github.com/krunal70'
@@ -346,9 +348,8 @@ const projectData = {
     tech: ['React Native', 'Expo', 'Redux Toolkit', 'Google Auth', 'Vector Icons'],
     overview: 'Architected and built a vehicle marketplace application from scratch supporting buyer, seller, and dealership workflows.',
     highlights: [
-      'Standard and Google OAuth authentication for seamless user onboarding.',
-      'Home feed, vehicle search/buy screens, and account profile management.',
-      'Package management and vehicle listing creation modules.'
+      'Built a vehicle marketplace app from scratch with standard and Google authentication for secure user onboarding.',
+      'Designed home, sale, and buy screens, plus an account module supporting profile editing, package management, and vehicle listing management.'
     ],
     link: '#',
     github: 'https://github.com/krunal70'
@@ -359,8 +360,8 @@ const projectData = {
     tech: ['React.js', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
     overview: 'End-to-end workforce management platform supporting worker, agency, client, department, and job administration.',
     highlights: [
-      'Enabled worker-client associations and dynamic assignment rules.',
-      'Real-time attendance tracking and automated payroll management functionality.'
+      'Architected an end-to-end workforce management platform supporting worker, agency, client, department, and job administration.',
+      'Enabled worker–client association, attendance tracking, and payroll management functionality.'
     ],
     link: '#',
     github: 'https://github.com/krunal70'
